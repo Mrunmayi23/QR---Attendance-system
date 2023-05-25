@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../Users/HP/Desktop/New folder"
+		},
+		{
+			"path": "../code"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "code"
+	}
+}

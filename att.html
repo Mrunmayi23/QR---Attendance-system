@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mark attendance</title>
+</head>
+<body>
+    <div>
+        <video id="video" playsinline autoplay></video>
+
+    </div>
+
+    <div class="controller">
+
+        <button id="snap">scan</button>
+    </div>
+
+    <div>
+        <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+        'use strict';
+        const video = document.getElementById('video');
+        const canvas =document.getElementById('canvas');
+        const snap =document.getElementById('snap');
+        const errorMsgElement =document.getElementById('span#ErrorMsg');
+
+        const constraints = {
+            //audio: true,
+            video:{
+                width:400 , height: 400
+            }
+        };
+        async function init(){
+            try{
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                handleSuccess(stream);
+            }
+            catch(e){
+                errorMsgElement.innerHTML = 'navigator.getUserMedia.error:${e.toString()}';
+
+            }
+        }
+        
+        function handleSuccess(stream){
+            window.stream = stream;
+            video.srcObject = stream;
+        }
+
+        init();
+
+        var context = canvas.getContext('2d');
+        snap.addEventListener("click",function(){
+            context.drawImage(video, 0, 0,400, 400);
+        });
+
+
+    </script>
+</body>
+
+
+
+
+
+
+
+<!--navigator.mediaDevices.enumerateDevices().then(devices =>{
+       console.log(devices)})-->
+</html>
+
+
+
+
